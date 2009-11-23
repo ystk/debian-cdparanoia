@@ -1,0 +1,58 @@
+Source: cdparanoia
+Section: sound
+Priority: optional
+Maintainer: Optical Media Tools Team <pkg-opt-media-team@lists.alioth.debian.org>
+Uploaders: TANIGUCHI Takaki <takaki@debian.org>,
+	Rogério Brito <rbrito@ime.usp.br>
+DM-Upload-Allowed: yes
+Build-Depends:
+ debhelper (>= 7), autotools-dev, libcam-dev [kfreebsd-amd64 kfreebsd-i386],
+ quilt
+Standards-Version: 3.8.3
+Vcs-Browser: http://git.debian.org/?p=pkg-opt-media/cdparanoia.git 
+Vcs-Git: git://git.debian.org/pkg-opt-media/cdparanoia.git
+Homepage: http://www.xiph.org/paranoia/
+
+Package: cdparanoia
+Section: sound
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: audio extraction tool for sampling CDs
+ An audio extraction tool for sampling CDs. Unlike similar programs such as
+ cdda2wav, cdparanoia goes to great lengths to try to extract the audio
+ information without any artifacts such as jitter.
+
+Package: cdparanoia-dbg
+Section: debug
+Priority: extra
+Architecture: any
+Depends:
+ ${misc:Depends}, libcdparanoia0 (= ${binary:Version}),
+ libcdparanoia-dev (= ${binary:Version})
+Description: audio extraction tool for sampling CDs (debug)
+ An audio extraction tool for sampling CDs. Unlike similar programs such as
+ cdda2wav, cdparanoia goes to great lengths to try to extract the audio
+ information without any artifacts such as jitter.
+ .
+ This package contains the debugging symbols.
+
+Package: libcdparanoia0
+Section: libs
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: audio extraction tool for sampling CDs (library)
+ An audio extraction tool for sampling CDs. Unlike similar programs such as
+ cdda2wav, cdparanoia goes to great lengths to try to extract the audio
+ information without any artifacts such as jitter.
+
+Package: libcdparanoia-dev
+Section: libdevel
+Architecture: any
+Depends: ${misc:Depends}, ${arch-os-dev}, libcdparanoia0 (= ${binary:Version})
+Provides: libcdparanoia0-dev
+Description: audio extraction tool for sampling CDs (development)
+ An audio extraction tool for sampling CDs. Unlike similar programs such as
+ cdda2wav, cdparanoia goes to great lengths to try to extract the audio
+ information without any artifacts such as jitter.
+ .
+ This package contains the development files.
