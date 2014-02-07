@@ -5,3 +5,4 @@
 05-kfreebsd.patch
 06-autoconf.patch
 07-jpmanfix.patch
+cdparanoia-force-progress-bar.diff

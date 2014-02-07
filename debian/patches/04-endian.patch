@@ -5,10 +5,9 @@ Description:
  Does not check for null buff before trying a byteswap
  (Closes: #499716, #506337, #507795, #509762).
 
-diff -Naurp cdparanoia.orig/interface/interface.c cdparanoia/interface/interface.c
---- cdparanoia.orig/interface/interface.c	2008-09-11 10:43:52.000000000 +0000
-+++ cdparanoia/interface/interface.c	2009-01-10 19:59:06.000000000 +0000
-@@ -118,7 +118,7 @@ long cdda_read_timed(cdrom_drive *d, voi
+--- a/interface/interface.c
++++ b/interface/interface.c
+@@ -118,7 +118,7 @@
  	if(d->bigendianp==-1) /* not determined yet */
  	  d->bigendianp=data_bigendianp(d);
  	

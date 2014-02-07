@@ -4,10 +4,9 @@ Authors:
  FreeBSD-Project
 Description: Added support for GNU/kFreeBSD.
 
-diff -Naurp cdparanoia.orig/Makefile.in cdparanoia/Makefile.in
---- cdparanoia.orig/Makefile.in	2009-06-14 08:36:42.000000000 +0000
-+++ cdparanoia/Makefile.in	2009-08-13 06:55:44.000000000 +0000
-@@ -32,10 +32,10 @@ export VERSION
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -32,10 +32,10 @@
  
  ifeq ($(STATIC),TRUE)
  	LIBS = interface/libcdda_interface.a paranoia/libcdda_paranoia.a \
@@ -20,10 +19,9 @@ diff -Naurp cdparanoia.orig/Makefile.in cdparanoia/Makefile.in
  	LIBDEP = interface/libcdda_interface.so paranoia/libcdda_paranoia.so
  endif
  
-diff -Naurp cdparanoia.orig/configure.in cdparanoia/configure.in
---- cdparanoia.orig/configure.in	2009-06-14 08:36:42.000000000 +0000
-+++ cdparanoia/configure.in	2009-08-13 06:55:44.000000000 +0000
-@@ -56,12 +56,14 @@ fi
+--- a/configure.in
++++ b/configure.in
+@@ -56,12 +56,14 @@
  	
  AC_CHECK_HEADERS(linux/sbpcd.h, SBPCD_H="-DSBPCD_H='1' ")
  AC_CHECK_HEADERS(linux/ucdrom.h, UCDROM_H="-DUCDROM_H='1' ")
@@ -38,10 +36,9 @@ diff -Naurp cdparanoia.orig/configure.in cdparanoia/configure.in
  AC_SUBST(TYPESIZES)
  AC_SUBST(OPT)
  AC_SUBST(DEBUG)
-diff -Naurp cdparanoia.orig/interface/Makefile.in cdparanoia/interface/Makefile.in
---- cdparanoia.orig/interface/Makefile.in	2009-06-14 08:36:42.000000000 +0000
-+++ cdparanoia/interface/Makefile.in	2009-08-13 06:55:44.000000000 +0000
-@@ -15,7 +15,7 @@ LD=@CC@
+--- a/interface/Makefile.in
++++ b/interface/Makefile.in
+@@ -15,7 +15,7 @@
  LDFLAGS=@LDFLAGS@ $(FLAGS)
  AR=@AR@
  RANLIB=@RANLIB@
@@ -50,9 +47,8 @@ diff -Naurp cdparanoia.orig/interface/Makefile.in cdparanoia/interface/Makefile.
  CPPFLAGS+=-D_REENTRANT
  
  OFILES = scan_devices.o	common_interface.o cooked_interface.o interface.o\
-diff -Naurp cdparanoia.orig/interface/common_interface.c cdparanoia/interface/common_interface.c
---- cdparanoia.orig/interface/common_interface.c	2009-06-14 08:36:42.000000000 +0000
-+++ cdparanoia/interface/common_interface.c	2009-08-13 06:55:44.000000000 +0000
+--- a/interface/common_interface.c
++++ b/interface/common_interface.c
 @@ -13,15 +13,22 @@
  #include "utils.h"
  #include "smallft.h"
@@ -76,7 +72,7 @@ diff -Naurp cdparanoia.orig/interface/common_interface.c cdparanoia/interface/co
      return(1); /* failure */
  
    return(0);
-@@ -29,6 +36,7 @@ int ioctl_ping_cdrom(int fd){
+@@ -29,6 +36,7 @@
  }
  
  
@@ -84,7 +80,7 @@ diff -Naurp cdparanoia.orig/interface/common_interface.c cdparanoia/interface/co
  /* Use the ioctl thingy above ping the cdrom; this will get model info */
  char *atapi_drive_info(int fd){
    /* Work around the fact that the struct grew without warning in
-@@ -49,6 +57,7 @@ char *atapi_drive_info(int fd){
+@@ -49,6 +57,7 @@
    free(id);
    return(ret);
  }
@@ -92,7 +88,7 @@ diff -Naurp cdparanoia.orig/interface/common_interface.c cdparanoia/interface/co
  
  int data_bigendianp(cdrom_drive *d){
    float lsb_votes=0;
-@@ -174,7 +183,9 @@ int data_bigendianp(cdrom_drive *d){
+@@ -174,7 +183,9 @@
     knows the leadout/leadin size. */
  
  int FixupTOC(cdrom_drive *d,int tracks){
@@ -102,7 +98,7 @@ diff -Naurp cdparanoia.orig/interface/common_interface.c cdparanoia/interface/co
    int j;
    
    /* First off, make sure the 'starting sector' is >=0 */
-@@ -211,6 +222,8 @@ int FixupTOC(cdrom_drive *d,int tracks){
+@@ -211,6 +222,8 @@
    /* For a scsi device, the ioctl must go to the specialized SCSI
       CDROM device, not the generic device. */
  
@@ -111,7 +107,7 @@ diff -Naurp cdparanoia.orig/interface/common_interface.c cdparanoia/interface/co
    if (d->ioctl_fd != -1) {
      int result;
  
-@@ -235,6 +248,7 @@ int FixupTOC(cdrom_drive *d,int tracks){
+@@ -235,6 +248,7 @@
        return 1;
      }
    }
@@ -119,9 +115,8 @@ diff -Naurp cdparanoia.orig/interface/common_interface.c cdparanoia/interface/co
    return 0;
  }
  
-diff -Naurp cdparanoia.orig/interface/cooked_interface.c cdparanoia/interface/cooked_interface.c
---- cdparanoia.orig/interface/cooked_interface.c	2009-08-13 06:55:16.000000000 +0000
-+++ cdparanoia/interface/cooked_interface.c	2009-08-13 06:55:44.000000000 +0000
+--- a/interface/cooked_interface.c
++++ b/interface/cooked_interface.c
 @@ -1,6 +1,8 @@
  /******************************************************************
   * CopyPolicy: GNU Lesser General Public License 2.1 applies
@@ -131,7 +126,7 @@ diff -Naurp cdparanoia.orig/interface/cooked_interface.c cdparanoia/interface/co
   *
   * CDROM code specific to the cooked ioctl interface
   *
-@@ -24,6 +26,7 @@ static int timed_ioctl(cdrom_drive *d, i
+@@ -24,6 +26,7 @@
    return ret2;
  }
  
@@ -139,7 +134,7 @@ diff -Naurp cdparanoia.orig/interface/cooked_interface.c cdparanoia/interface/co
  static int cooked_readtoc (cdrom_drive *d){
    int i;
    int tracks;
-@@ -157,6 +160,140 @@ static long cooked_read (cdrom_drive *d,
+@@ -157,6 +160,140 @@
    return ret;
  }
  
@@ -280,7 +275,7 @@ diff -Naurp cdparanoia.orig/interface/cooked_interface.c cdparanoia/interface/co
  /* hook */
  static int Dummy (cdrom_drive *d,int Switch){
    return(0);
-@@ -221,6 +358,7 @@ static void check_exceptions(cdrom_drive
+@@ -221,6 +358,7 @@
  int cooked_init_drive (cdrom_drive *d){
    int ret;
  
@@ -288,7 +283,7 @@ diff -Naurp cdparanoia.orig/interface/cooked_interface.c cdparanoia/interface/co
    switch(d->drive_type){
    case MATSUSHITA_CDROM_MAJOR:	/* sbpcd 1 */
    case MATSUSHITA_CDROM2_MAJOR:	/* sbpcd 2 */
-@@ -271,6 +409,9 @@ int cooked_init_drive (cdrom_drive *d){
+@@ -271,6 +409,9 @@
    default:
      d->nsectors=40; 
    }
@@ -298,10 +293,9 @@ diff -Naurp cdparanoia.orig/interface/cooked_interface.c cdparanoia/interface/co
    d->enable_cdda = Dummy;
    d->read_audio = cooked_read;
    d->read_toc = cooked_readtoc;
-diff -Naurp cdparanoia.orig/interface/interface.c cdparanoia/interface/interface.c
---- cdparanoia.orig/interface/interface.c	2009-08-13 06:55:25.000000000 +0000
-+++ cdparanoia/interface/interface.c	2009-08-13 06:55:44.000000000 +0000
-@@ -40,7 +40,15 @@ int cdda_close(cdrom_drive *d){
+--- a/interface/interface.c
++++ b/interface/interface.c
+@@ -40,7 +40,15 @@
      if(d->cdda_fd!=-1)close(d->cdda_fd);
      if(d->ioctl_fd!=-1 && d->ioctl_fd!=d->cdda_fd)close(d->ioctl_fd);
      if(d->private_data){
@@ -317,9 +311,8 @@ diff -Naurp cdparanoia.orig/interface/interface.c cdparanoia/interface/interface
        free(d->private_data);
      }
  
-diff -Naurp cdparanoia.orig/interface/low_interface.h cdparanoia/interface/low_interface.h
---- cdparanoia.orig/interface/low_interface.h	2009-06-14 08:36:42.000000000 +0000
-+++ cdparanoia/interface/low_interface.h	2009-08-13 06:55:44.000000000 +0000
+--- a/interface/low_interface.h
++++ b/interface/low_interface.h
 @@ -26,6 +26,8 @@
  #include <sys/time.h>
  #include <sys/types.h>
@@ -357,7 +350,7 @@ diff -Naurp cdparanoia.orig/interface/low_interface.h cdparanoia/interface/low_i
  #ifndef SG_IO
  /* old kernel version; the usage is all runtime-safe, this is just to
     build */
-@@ -98,19 +112,30 @@ typedef struct sg_io_hdr
+@@ -98,19 +112,30 @@
  #endif
  
  struct cdda_private_data {
@@ -390,9 +383,8 @@ diff -Naurp cdparanoia.orig/interface/low_interface.h cdparanoia/interface/low_i
  extern int  scsi_init_drive (cdrom_drive *d);
  #ifdef CDDA_TEST
  extern int  test_init_drive (cdrom_drive *d);
-diff -Naurp cdparanoia.orig/interface/scan_devices.c cdparanoia/interface/scan_devices.c
---- cdparanoia.orig/interface/scan_devices.c	2009-08-13 06:55:16.000000000 +0000
-+++ cdparanoia/interface/scan_devices.c	2009-08-13 06:55:44.000000000 +0000
+--- a/interface/scan_devices.c
++++ b/interface/scan_devices.c
 @@ -24,6 +24,8 @@
  
  #define MAX_DEV_LEN 20 /* Safe because strings only come from below */
@@ -402,7 +394,7 @@ diff -Naurp cdparanoia.orig/interface/scan_devices.c cdparanoia/interface/scan_d
  static char *scsi_cdrom_prefixes[]={
    "/dev/scd",
    "/dev/sr",
-@@ -52,6 +54,17 @@ static char *cdrom_devices[]={
+@@ -52,6 +54,17 @@
    "/dev/cm206cd",
    "/dev/gscd",
    "/dev/optcd",NULL};
@@ -420,7 +412,7 @@ diff -Naurp cdparanoia.orig/interface/scan_devices.c cdparanoia/interface/scan_d
  
  /* Functions here look for a cdrom drive; full init of a drive type
     happens in interface.c */
-@@ -78,10 +91,12 @@ cdrom_drive *cdda_find_a_cdrom(int messa
+@@ -78,10 +91,12 @@
  	if((d=cdda_identify(buffer,messagedest,messages)))
  	  return(d);
  	idmessage(messagedest,messages,"",NULL);
@@ -433,7 +425,7 @@ diff -Naurp cdparanoia.orig/interface/scan_devices.c cdparanoia/interface/scan_d
        }
      }else{
        /* Name.  Go for it. */
-@@ -145,6 +160,7 @@ char *test_resolve_symlink(const char *f
+@@ -145,6 +160,7 @@
  
  }
  
@@ -441,7 +433,7 @@ diff -Naurp cdparanoia.orig/interface/scan_devices.c cdparanoia/interface/scan_d
  cdrom_drive *cdda_identify_cooked(const char *dev, int messagedest,
  				  char **messages){
  
-@@ -280,6 +296,61 @@ cdrom_drive *cdda_identify_cooked(const 
+@@ -280,6 +296,61 @@
    return(d);
  }
  
@@ -503,7 +495,7 @@ diff -Naurp cdparanoia.orig/interface/scan_devices.c cdparanoia/interface/scan_d
  struct  sg_id {
    long    l1; /* target | lun << 8 | channel << 16 | low_ino << 24 */
    long    l2; /* Unique id */
-@@ -406,6 +477,7 @@ matchfail:
+@@ -406,6 +477,7 @@
    if(dev!=-1)close(dev);
    return(NULL);
  }
@@ -511,7 +503,7 @@ diff -Naurp cdparanoia.orig/interface/scan_devices.c cdparanoia/interface/scan_d
  
  void strscat(char *a,char *b,int n){
    int i;
-@@ -417,6 +489,7 @@ void strscat(char *a,char *b,int n){
+@@ -417,6 +489,7 @@
    strcat(a," ");
  }
  
@@ -519,7 +511,7 @@ diff -Naurp cdparanoia.orig/interface/scan_devices.c cdparanoia/interface/scan_d
  /* At this point, we're going to punt compatability before SG2, and
     allow only SG2 and SG3 */
  static int verify_SG_version(cdrom_drive *d,int messagedest,
-@@ -786,6 +859,96 @@ cdda_identify_scsi_fail:
+@@ -786,6 +859,96 @@
    }
    return(NULL);
  }
@@ -616,9 +608,8 @@ diff -Naurp cdparanoia.orig/interface/scan_devices.c cdparanoia/interface/scan_d
  
  #ifdef CDDA_TEST
  
-diff -Naurp cdparanoia.orig/interface/scsi_interface.c cdparanoia/interface/scsi_interface.c
---- cdparanoia.orig/interface/scsi_interface.c	2009-08-13 06:55:16.000000000 +0000
-+++ cdparanoia/interface/scsi_interface.c	2009-08-13 06:55:44.000000000 +0000
+--- a/interface/scsi_interface.c
++++ b/interface/scsi_interface.c
 @@ -12,6 +12,11 @@
  #include "common_interface.h"
  #include "utils.h"
@@ -631,7 +622,7 @@ diff -Naurp cdparanoia.orig/interface/scsi_interface.c cdparanoia/interface/scsi
  static int timed_ioctl(cdrom_drive *d, int fd, int command, void *arg){
    struct timespec tv1;
    struct timespec tv2;
-@@ -36,6 +41,7 @@ static void tweak_SG_buffer(cdrom_drive 
+@@ -36,6 +41,7 @@
    int table, reserved, cur, err;
    char buffer[256];
  
@@ -639,7 +630,7 @@ diff -Naurp cdparanoia.orig/interface/scsi_interface.c cdparanoia/interface/scsi
    /* SG_SET_RESERVED_SIZE doesn't actually allocate or reserve anything.
     * what it _does_ do is give you an error if you ask for a value
     * larger than q->max_sectors (the length of the device's bio request
-@@ -59,6 +65,7 @@ static void tweak_SG_buffer(cdrom_drive 
+@@ -59,6 +65,7 @@
  	  "table entry size: %d bytes\n\t"
  	  "maximum theoretical transfer: %d sectors\n",
  	  table, reserved, table*(reserved/CD_FRAMESIZE_RAW));
@@ -647,7 +638,7 @@ diff -Naurp cdparanoia.orig/interface/scsi_interface.c cdparanoia/interface/scsi
    cdmessage(d,buffer);
  
    cur=reserved; /* only use one entry for now */
-@@ -90,9 +97,19 @@ static void tweak_SG_buffer(cdrom_drive 
+@@ -90,9 +97,19 @@
  
    if(cur==0) exit(1);
  
@@ -667,7 +658,7 @@ diff -Naurp cdparanoia.orig/interface/scsi_interface.c cdparanoia/interface/scsi
  static void clear_garbage(cdrom_drive *d){
    fd_set fdset;
    struct timeval tv;
-@@ -123,6 +140,7 @@ static void clear_garbage(cdrom_drive *d
+@@ -123,6 +140,7 @@
      flag=1;
    }
  }
@@ -675,7 +666,7 @@ diff -Naurp cdparanoia.orig/interface/scsi_interface.c cdparanoia/interface/scsi
  
  static int check_sbp_error(const unsigned char status,
  			   const unsigned char *sbp) {
-@@ -142,7 +160,11 @@ static int check_sbp_error(const unsigne
+@@ -142,7 +160,11 @@
      case 1:
        break;
      case 2:
@@ -687,7 +678,7 @@ diff -Naurp cdparanoia.orig/interface/scsi_interface.c cdparanoia/interface/scsi
        return(TR_NOTREADY);
      case 3: 
        if ((ASC==0x0C) & (ASCQ==0x09)) {
-@@ -172,6 +194,7 @@ static int check_sbp_error(const unsigne
+@@ -172,6 +194,7 @@
    return 0;
  }
  
@@ -695,7 +686,7 @@ diff -Naurp cdparanoia.orig/interface/scsi_interface.c cdparanoia/interface/scsi
  /* process a complete scsi command. */
  static int sg2_handle_scsi_cmd(cdrom_drive *d,
  			       unsigned char *cmd,
-@@ -432,6 +455,88 @@ static int handle_scsi_cmd(cdrom_drive *
+@@ -432,6 +455,91 @@
    return sg2_handle_scsi_cmd(d,cmd,cmd_len,in_size,out_size,bytefill,bytecheck,sense);
  
  }
@@ -749,8 +740,11 @@ diff -Naurp cdparanoia.orig/interface/scsi_interface.c cdparanoia/interface/scsi
 +		return TR_EREAD;
 +	}
 +
-+	if (d->private_data->ccb->csio.sense_data.error_code & SSD_ERRCODE) {
-+		switch (d->private_data->ccb->csio.sense_data.flags & SSD_KEY) {
++	int errorCode, senseKey, addSenseCode, addSenseCodeQual;
++	scsi_extract_sense( &(d->private_data->ccb->csio.sense_data), &errorCode, &senseKey, &addSenseCode,
++		&addSenseCodeQual );
++	if (errorCode) {
++		switch (senseKey) {
 +		case SSD_KEY_NO_SENSE:
 +			errno = EIO;
 +			return TR_UNKNOWN;
@@ -761,8 +755,8 @@ diff -Naurp cdparanoia.orig/interface/scsi_interface.c cdparanoia/interface/scsi
 +			return TR_BUSY;
 +		case SSD_KEY_MEDIUM_ERROR:
 +			errno = EIO;
-+			if (d->private_data->ccb->csio.sense_data.add_sense_code == 0x0c &&
-+			    d->private_data->ccb->csio.sense_data.add_sense_code_qual == 0x09)
++			if (addSenseCode == 0x0c &&
++			    addSenseCodeQual == 0x09)
 +				return TR_STREAMING;
 +			else
 +				return TR_MEDIUM;
@@ -784,7 +778,7 @@ diff -Naurp cdparanoia.orig/interface/scsi_interface.c cdparanoia/interface/scsi
  
  static int test_unit_ready(cdrom_drive *d){
    unsigned char sense[SG_MAX_SENSE];
-@@ -453,6 +558,7 @@ static int test_unit_ready(cdrom_drive *
+@@ -453,6 +558,7 @@
    return 1;
  }
  
@@ -792,7 +786,7 @@ diff -Naurp cdparanoia.orig/interface/scsi_interface.c cdparanoia/interface/scsi
  static void reset_scsi(cdrom_drive *d){
    int arg,tries=0;
    d->enable_cdda(d,0);
-@@ -471,6 +577,29 @@ static void reset_scsi(cdrom_drive *d){
+@@ -471,6 +577,29 @@
    
    d->enable_cdda(d,1);
  }
@@ -822,39 +816,48 @@ diff -Naurp cdparanoia.orig/interface/scsi_interface.c cdparanoia/interface/scsi
  
  static int mode_sense_atapi(cdrom_drive *d,int size,int page){ 
    unsigned char sense[SG_MAX_SENSE];
-@@ -1080,9 +1209,15 @@ static long scsi_read_map (cdrom_drive *
+@@ -1080,10 +1210,20 @@
+ 	sprintf(b,"scsi_read error: sector=%ld length=%ld retry=%d\n",
  		begin,sectors,retry_count);
  	cdmessage(d,b);
- 	sprintf(b,"                 Sense key: %x ASC: %x ASCQ: %x\n",
 +#if defined(__linux__)
+ 	sprintf(b,"                 Sense key: %x ASC: %x ASCQ: %x\n",
  		(int)(sense[2]&0xf),
  		(int)(sense[12]),
  		(int)(sense[13]));
 +#elif defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
-+                d->private_data->ccb->csio.sense_data.flags & SSD_KEY,
-+                d->private_data->ccb->csio.sense_data.add_sense_code,
-+                d->private_data->ccb->csio.sense_data.add_sense_code_qual);
++	int errorCode, senseKey, addSenseCode, addSenseCodeQual;
++	scsi_extract_sense( &(d->private_data->ccb->csio.sense_data), &errorCode, &senseKey, &addSenseCode,
++		&addSenseCodeQual );
++	sprintf(b,"                 Sense key: %x ASC: %x ASCQ: %x\n",
++                senseKey,
++                addSenseCode,
++                addSenseCodeQual);
 +#endif
  	cdmessage(d,b);
  	sprintf(b,"                 Transport error: %s\n",strerror_tr[err]);
  	cdmessage(d,b);
-@@ -1092,9 +1227,15 @@ static long scsi_read_map (cdrom_drive *
+@@ -1092,10 +1228,19 @@
+ 
  	fprintf(stderr,"scsi_read error: sector=%ld length=%ld retry=%d\n",
  		begin,sectors,retry_count);
- 	fprintf(stderr,"                 Sense key: %x ASC: %x ASCQ: %x\n",
 +#if defined(__linux__)
+ 	fprintf(stderr,"                 Sense key: %x ASC: %x ASCQ: %x\n",
  		(int)(sense[2]&0xf),
  		(int)(sense[12]),
  		(int)(sense[13]));
 +#elif defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
-+                d->private_data->ccb->csio.sense_data.flags & SSD_KEY,
-+                d->private_data->ccb->csio.sense_data.add_sense_code,
-+                d->private_data->ccb->csio.sense_data.add_sense_code_qual);
++	scsi_extract_sense( &(d->private_data->ccb->csio.sense_data), &errorCode, &senseKey, &addSenseCode,
++		&addSenseCodeQual );
++	fprintf(stderr,"                 Sense key: %x ASC: %x ASCQ: %x\n",
++                senseKey,
++                addSenseCode,
++                addSenseCodeQual);
 +#endif
  	fprintf(stderr,"                 Transport error: %s\n",strerror_tr[err]);
  	fprintf(stderr,"                 System error: %s\n",strerror(errno));
        }
-@@ -1120,10 +1261,11 @@ static long scsi_read_map (cdrom_drive *
+@@ -1120,10 +1261,11 @@
  	}
  	sectors--;
  	continue;
@@ -867,7 +870,7 @@ diff -Naurp cdparanoia.orig/interface/scsi_interface.c cdparanoia/interface/scsi
        default:
  	if(sectors==1){
  	  if(errno==EIO)
-@@ -1587,6 +1729,7 @@ static void check_cache(cdrom_drive *d){
+@@ -1587,6 +1729,7 @@
    }
  }
  
@@ -875,7 +878,7 @@ diff -Naurp cdparanoia.orig/interface/scsi_interface.c cdparanoia/interface/scsi
  static int check_atapi(cdrom_drive *d){
    int atapiret=-1;
    int fd = d->cdda_fd; /* check the device we'll actually be using to read */
-@@ -1618,6 +1761,47 @@ static int check_atapi(cdrom_drive *d){
+@@ -1618,6 +1761,47 @@
    }
  }  
  
@@ -923,7 +926,7 @@ diff -Naurp cdparanoia.orig/interface/scsi_interface.c cdparanoia/interface/scsi
  static int check_mmc(cdrom_drive *d){
    unsigned char *b;
    cdmessage(d,"\nChecking for MMC style command set...\n");
-@@ -1664,6 +1848,7 @@ static void check_exceptions(cdrom_drive
+@@ -1664,6 +1848,7 @@
    }
  }
  
@@ -931,7 +934,7 @@ diff -Naurp cdparanoia.orig/interface/scsi_interface.c cdparanoia/interface/scsi
  /* request vendor brand and model */
  unsigned char *scsi_inquiry(cdrom_drive *d){
    unsigned char sense[SG_MAX_SENSE];
-@@ -1675,6 +1860,7 @@ unsigned char *scsi_inquiry(cdrom_drive 
+@@ -1675,6 +1860,7 @@
    }
    return (d->private_data->sg_buffer);
  }
@@ -939,7 +942,7 @@ diff -Naurp cdparanoia.orig/interface/scsi_interface.c cdparanoia/interface/scsi
  
  int scsi_init_drive(cdrom_drive *d){
    int ret;
-@@ -1742,8 +1928,12 @@ int scsi_init_drive(cdrom_drive *d){
+@@ -1742,8 +1928,12 @@
    check_cache(d);
  
    d->error_retry=1;
@@ -952,9 +955,8 @@ diff -Naurp cdparanoia.orig/interface/scsi_interface.c cdparanoia/interface/scsi
    d->report_all=1;
    return(0);
  }
-diff -Naurp cdparanoia.orig/interface/utils.h cdparanoia/interface/utils.h
---- cdparanoia.orig/interface/utils.h	2009-06-14 08:36:42.000000000 +0000
-+++ cdparanoia/interface/utils.h	2009-08-13 06:55:44.000000000 +0000
+--- a/interface/utils.h
++++ b/interface/utils.h
 @@ -1,4 +1,9 @@
 +#if defined (__linux__) || defined (__GLIBC__)
  #include <endian.h>
@@ -965,10 +967,9 @@ diff -Naurp cdparanoia.orig/interface/utils.h cdparanoia/interface/utils.h
  #include <stdio.h>
  #include <errno.h>
  #include <string.h>
-diff -Naurp cdparanoia.orig/main.c cdparanoia/main.c
---- cdparanoia.orig/main.c	2009-08-13 06:55:03.000000000 +0000
-+++ cdparanoia/main.c	2009-08-13 06:55:44.000000000 +0000
-@@ -1365,7 +1365,11 @@ int main(int argc,char *argv[]){
+--- a/main.c
++++ b/main.c
+@@ -1365,7 +1365,11 @@
  	  if(err)free(err);
  	  if(mes)free(mes);
  	  if(readbuf==NULL){
@@ -981,10 +982,9 @@ diff -Naurp cdparanoia.orig/main.c cdparanoia/main.c
  	      report("\nparanoia_read: CDROM drive unavailable, bailing.\n");
  	      exit(1);
  	    }
-diff -Naurp cdparanoia.orig/paranoia/paranoia.c cdparanoia/paranoia/paranoia.c
---- cdparanoia.orig/paranoia/paranoia.c	2009-06-14 08:36:42.000000000 +0000
-+++ cdparanoia/paranoia/paranoia.c	2009-08-13 06:55:44.000000000 +0000
-@@ -2439,6 +2439,7 @@ c_block *i_read_c_block(cdrom_paranoia *
+--- a/paranoia/paranoia.c
++++ b/paranoia/paranoia.c
+@@ -2439,6 +2439,7 @@
  			    secread))<secread){
  
  	if(thisread<0){
@@ -992,7 +992,7 @@ diff -Naurp cdparanoia.orig/paranoia/paranoia.c cdparanoia/paranoia/paranoia.c
  	  if(errno==ENOMEDIUM){
  	    /* the one error we bail on immediately */
  	    if(new)free_c_block(new);
-@@ -2446,6 +2447,7 @@ c_block *i_read_c_block(cdrom_paranoia *
+@@ -2446,6 +2447,7 @@
  	    if(flags)free(flags);
  	    return NULL;
  	  }
@@ -1000,7 +1000,7 @@ diff -Naurp cdparanoia.orig/paranoia/paranoia.c cdparanoia/paranoia/paranoia.c
  	  thisread=0;
  	}
  
-@@ -2687,7 +2689,9 @@ int16_t *paranoia_read_limited(cdrom_par
+@@ -2687,7 +2689,9 @@
  
  	/* Was the medium removed or the device closed out from
  	   under us? */
@@ -1010,9 +1010,8 @@ diff -Naurp cdparanoia.orig/paranoia/paranoia.c cdparanoia/paranoia/paranoia.c
        
        }
      }
-diff -Naurp cdparanoia.orig/utils.h cdparanoia/utils.h
---- cdparanoia.orig/utils.h	2009-06-14 08:36:42.000000000 +0000
-+++ cdparanoia/utils.h	2009-08-13 06:55:44.000000000 +0000
+--- a/utils.h
++++ b/utils.h
 @@ -1,5 +1,9 @@
  #include <stdlib.h>
 +#if defined (__linux__) || defined(__GLIBC__)

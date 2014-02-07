@@ -1,7 +1,5 @@
-Index: cdparanoia/cdparanoia.1.jp
-===================================================================
---- cdparanoia.orig/cdparanoia.1.jp	2009-11-22 15:52:07.445293755 +0900
-+++ cdparanoia/cdparanoia.1.jp	2009-11-22 15:52:28.837295926 +0900
+--- a/cdparanoia.1.jp
++++ b/cdparanoia.1.jp
 @@ -151,7 +151,7 @@
  .TP
  .B \-Z --disable-paranoia

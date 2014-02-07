@@ -1,3 +1,35 @@
+cdparanoia (3.10.2+debian-10.1) unstable; urgency=medium
+
+  * Non-maintainer upload with maintainer's consent.
+  * Urgency "medium" for transition-related RC bug fix.
+  * Fix FTBFS on kfreebsd caused by libcam API changes.  (Closes: #660403)
+
+ -- Adam D. Barratt <adam@adam-barratt.org.uk>  Wed, 29 Feb 2012 18:34:44 +0000
+
+cdparanoia (3.10.2+debian-10) unstable; urgency=low
+
+  [ Rogério Brito ]
+  * Preparation to format "3.0 (quilt)".
+  * Remove README.source (void effect with format 3.0).
+  * Refresh patches to avoid potential problems with the buildd's and
+    dpkg's implementation of quilt.
+  * Include control on compilation and linking flags.
+  * Include extra fixes for spelling in the patch.
+  * Update 01-typos-and-spelling.patch to match DEP-3
+  * Add an option to not suppress progress bar when stderr is
+    redirected. Closes: #589112.
+  * Split build-dependencies for VCS-friendliness
+  * Remove duplicate field in the binary packages
+  * Detail some of the long descriptions so that they are not equal
+    anymore
+  * Update 01-typos-and-spelling.patch with some other spelling errors
+  * Fix some more typos. Closes: #552209, #572482.
+
+  [ TANIGUCHI Takaki ]
+  * debian/watch: add new control file.
+
+ -- Rogério Brito <rbrito@ime.usp.br>  Sat, 06 Nov 2010 14:53:55 -0200
+
 cdparanoia (3.10.2+debian-9) unstable; urgency=low
 
   * New maintainer (Closes: #543904)

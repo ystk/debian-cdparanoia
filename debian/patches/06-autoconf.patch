@@ -1,9 +1,8 @@
 Author: Petr Salinger <Petr.Salinger@seznam.cz>
 Description: Rerun autoconf for support for GNU/kFreeBSD.
 
-diff -Naurp cdparanoia.orig/configure cdparanoia/configure
---- cdparanoia.orig/configure	2009-06-14 08:36:42.000000000 +0000
-+++ cdparanoia/configure	2009-08-13 06:57:00.000000000 +0000
+--- a/configure
++++ b/configure
 @@ -1,81 +1,413 @@
  #! /bin/sh
  # Guess values for system-dependent variables and create Makefiles.
@@ -458,7 +457,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  # Avoid depending upon Character Ranges.
  as_cr_letters='abcdefghijklmnopqrstuvwxyz'
  as_cr_LETTERS='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-@@ -83,146 +415,107 @@ as_cr_Letters=$as_cr_letters$as_cr_LETTE
+@@ -83,146 +415,107 @@
  as_cr_digits='0123456789'
  as_cr_alnum=$as_cr_Letters$as_cr_digits
  
@@ -678,7 +677,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  
  # Sed expression to map a string onto a valid CPP name.
  as_tr_cpp="eval sed 'y%*$as_cr_letters%P$as_cr_LETTERS%;s%[^_$as_cr_alnum]%_%g'"
-@@ -231,38 +524,24 @@ as_tr_cpp="eval sed 'y%*$as_cr_letters%P
+@@ -231,38 +524,24 @@
  as_tr_sh="eval sed 'y%*+%pp%;s%[^_$as_cr_alnum]%_%g'"
  
  
@@ -720,7 +719,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  
  # Identity of this package.
  PACKAGE_NAME=
-@@ -270,51 +549,133 @@ PACKAGE_TARNAME=
+@@ -270,51 +549,133 @@
  PACKAGE_VERSION=
  PACKAGE_STRING=
  PACKAGE_BUGREPORT=
@@ -868,7 +867,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  # The variables have the same names as the options, with
  # dashes changed to underlines.
  cache_file=/dev/null
-@@ -337,34 +698,48 @@ x_libraries=NONE
+@@ -337,34 +698,48 @@
  # and all the variables that are supposed to be based on exec_prefix
  # by default will actually change.
  # Use braces instead of parens because sh, perl, etc. also accept them.
@@ -924,7 +923,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  
    -bindir | --bindir | --bindi | --bind | --bin | --bi)
      ac_prev=bindir ;;
-@@ -386,33 +761,59 @@ do
+@@ -386,33 +761,59 @@
    --config-cache | -C)
      cache_file=config.cache ;;
  
@@ -1002,7 +1001,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  
    -exec-prefix | --exec_prefix | --exec-prefix | --exec-prefi \
    | --exec-pref | --exec-pre | --exec-pr | --exec-p | --exec- \
-@@ -439,6 +840,12 @@ do
+@@ -439,6 +840,12 @@
    -host=* | --host=* | --hos=* | --ho=*)
      host_alias=$ac_optarg ;;
  
@@ -1015,7 +1014,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
    -includedir | --includedir | --includedi | --included | --include \
    | --includ | --inclu | --incl | --inc)
      ac_prev=includedir ;;
-@@ -463,13 +870,16 @@ do
+@@ -463,13 +870,16 @@
    | --libexe=* | --libex=* | --libe=*)
      libexecdir=$ac_optarg ;;
  
@@ -1036,7 +1035,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
      localstatedir=$ac_optarg ;;
  
    -mandir | --mandir | --mandi | --mand | --man | --ma | --m)
-@@ -534,6 +944,16 @@ do
+@@ -534,6 +944,16 @@
    | --progr-tra=* | --program-tr=* | --program-t=*)
      program_transform_name=$ac_optarg ;;
  
@@ -1053,7 +1052,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
    -q | -quiet | --quiet | --quie | --qui | --qu | --q \
    | -silent | --silent | --silen | --sile | --sil)
      silent=yes ;;
-@@ -584,26 +1004,36 @@ do
+@@ -584,26 +1004,36 @@
      ac_init_version=: ;;
  
    -with-* | --with-*)
@@ -1105,7 +1104,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  
    --x)
      # Obsolete; use --with-x.
-@@ -623,26 +1053,25 @@ do
+@@ -623,26 +1053,25 @@
    | --x-librar=* | --x-libra=* | --x-libr=* | --x-lib=* | --x-li=* | --x-l=*)
      x_libraries=$ac_optarg ;;
  
@@ -1141,7 +1140,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
      : ${build_alias=$ac_option} ${host_alias=$ac_option} ${target_alias=$ac_option}
      ;;
  
-@@ -651,31 +1080,36 @@ done
+@@ -651,31 +1080,36 @@
  
  if test -n "$ac_prev"; then
    ac_option=--`echo $ac_prev | sed 's/_/-/g'`
@@ -1196,7 +1195,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  done
  
  # There might be people who depend on the old broken behavior: `$host'
-@@ -689,7 +1123,7 @@ target=$target_alias
+@@ -689,7 +1123,7 @@
  if test "x$host_alias" != x; then
    if test "x$build_alias" = x; then
      cross_compiling=maybe
@@ -1205,7 +1204,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
      If a cross compiler is detected then cross compile mode will be used." >&2
    elif test "x$build_alias" != "x$host_alias"; then
      cross_compiling=yes
-@@ -702,74 +1136,72 @@ test -n "$host_alias" && ac_tool_prefix=
+@@ -702,74 +1136,72 @@
  test "$silent" = yes && exec 6>/dev/null
  
  
@@ -1337,7 +1336,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  
  #
  # Report the --help message.
-@@ -798,14 +1230,11 @@ Configuration:
+@@ -798,14 +1230,11 @@
    -n, --no-create         do not create output files
        --srcdir=DIR        find the sources in DIR [configure dir or \`..']
  
@@ -1354,7 +1353,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  
  By default, \`make install' will install all the files in
  \`$ac_default_prefix/bin', \`$ac_default_prefix/lib' etc.  You can specify
-@@ -815,18 +1244,25 @@ for instance \`--prefix=\$HOME'.
+@@ -815,18 +1244,25 @@
  For better control, use the options below.
  
  Fine tuning of the installation directories:
@@ -1392,7 +1391,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  _ACEOF
  
    cat <<\_ACEOF
-@@ -846,167 +1282,610 @@ Some influential environment variables:
+@@ -846,167 +1282,610 @@
    CFLAGS      C compiler flags
    LDFLAGS     linker flags, e.g. -L<lib dir> if you have libraries in a
                nonstandard directory <lib dir>
@@ -2125,7 +2124,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  
  _ACEOF
  
-@@ -1019,7 +1898,6 @@ _ACEOF
+@@ -1019,7 +1898,6 @@
  ac_configure_args=
  ac_configure_args0=
  ac_configure_args1=
@@ -2133,7 +2132,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  ac_must_keep_next=false
  for ac_pass in 1 2
  do
-@@ -1030,13 +1908,13 @@ do
+@@ -1030,13 +1908,13 @@
      -q | -quiet | --quiet | --quie | --qui | --qu | --q \
      | -silent | --silent | --silen | --sile | --sil)
        continue ;;
@@ -2151,7 +2150,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
        if test $ac_must_keep_next = true; then
  	ac_must_keep_next=false # Got value, back to normal.
        else
-@@ -1052,21 +1930,19 @@ do
+@@ -1052,21 +1930,19 @@
  	  -* ) ac_must_keep_next=true ;;
  	esac
        fi
@@ -2178,7 +2177,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  trap 'exit_status=$?
    # Save into config.log some information that might help in debugging.
    {
-@@ -1079,20 +1955,35 @@ trap 'exit_status=$?
+@@ -1079,20 +1955,35 @@
  _ASBOX
      echo
      # The following way of writing the cache mishandles newlines in values,
@@ -2224,7 +2223,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
      echo
  
      cat <<\_ASBOX
-@@ -1103,22 +1994,28 @@ _ASBOX
+@@ -1103,22 +1994,28 @@
      echo
      for ac_var in $ac_subst_vars
      do
@@ -2260,7 +2259,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
        done | sort
        echo
      fi
-@@ -1130,26 +2027,26 @@ _ASBOX
+@@ -1130,26 +2027,26 @@
  ## ----------- ##
  _ASBOX
        echo
@@ -2297,7 +2296,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  
  # Predefined preprocessor variables.
  
-@@ -1157,40 +2054,46 @@ cat >>confdefs.h <<_ACEOF
+@@ -1157,40 +2054,46 @@
  #define PACKAGE_NAME "$PACKAGE_NAME"
  _ACEOF
  
@@ -2358,7 +2357,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
      sed 's/^/| /' "$ac_site_file" >&5
      . "$ac_site_file"
    fi
-@@ -1200,69 +2103,79 @@ if test -r "$cache_file"; then
+@@ -1200,69 +2103,79 @@
    # Some versions of bash will fail to source /dev/null (special
    # files actually), so we avoid doing that.
    if test -f "$cache_file"; then
@@ -2468,7 +2467,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  
  ac_ext=c
  ac_cpp='$CPP $CPPFLAGS'
-@@ -1272,103 +2185,101 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
+@@ -1272,103 +2185,101 @@
  
  
  
@@ -2654,7 +2653,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  
  
  
-@@ -1381,10 +2292,10 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
+@@ -1381,10 +2292,10 @@
  if test -n "$ac_tool_prefix"; then
    # Extract the first word of "${ac_tool_prefix}gcc", so it can be a program name with args.
  set dummy ${ac_tool_prefix}gcc; ac_word=$2
@@ -2669,7 +2668,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  else
    if test -n "$CC"; then
    ac_cv_prog_CC="$CC" # Let the user override the test.
-@@ -1394,35 +2305,37 @@ for as_dir in $PATH
+@@ -1394,35 +2305,37 @@
  do
    IFS=$as_save_IFS
    test -z "$as_dir" && as_dir=.
@@ -2719,7 +2718,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  else
    if test -n "$ac_ct_CC"; then
    ac_cv_prog_ac_ct_CC="$ac_ct_CC" # Let the user override the test.
-@@ -1432,39 +2345,50 @@ for as_dir in $PATH
+@@ -1432,39 +2345,50 @@
  do
    IFS=$as_save_IFS
    test -z "$as_dir" && as_dir=.
@@ -2785,7 +2784,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  else
    if test -n "$CC"; then
    ac_cv_prog_CC="$CC" # Let the user override the test.
-@@ -1474,77 +2398,37 @@ for as_dir in $PATH
+@@ -1474,77 +2398,37 @@
  do
    IFS=$as_save_IFS
    test -z "$as_dir" && as_dir=.
@@ -2877,7 +2876,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  else
    if test -n "$CC"; then
    ac_cv_prog_CC="$CC" # Let the user override the test.
-@@ -1555,18 +2439,19 @@ for as_dir in $PATH
+@@ -1555,18 +2439,19 @@
  do
    IFS=$as_save_IFS
    test -z "$as_dir" && as_dir=.
@@ -2901,7 +2900,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  
  if test $ac_prog_rejected = yes; then
    # We found a bogon in the path, so make sure we never use it.
-@@ -1584,24 +2469,25 @@ fi
+@@ -1584,24 +2469,25 @@
  fi
  CC=$ac_cv_prog_CC
  if test -n "$CC"; then
@@ -2936,7 +2935,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  else
    if test -n "$CC"; then
    ac_cv_prog_CC="$CC" # Let the user override the test.
-@@ -1611,39 +2497,41 @@ for as_dir in $PATH
+@@ -1611,39 +2497,41 @@
  do
    IFS=$as_save_IFS
    test -z "$as_dir" && as_dir=.
@@ -2991,7 +2990,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  else
    if test -n "$ac_ct_CC"; then
    ac_cv_prog_ac_ct_CC="$ac_ct_CC" # Let the user override the test.
-@@ -1653,183 +2541,227 @@ for as_dir in $PATH
+@@ -1653,183 +2541,227 @@
  do
    IFS=$as_save_IFS
    test -z "$as_dir" && as_dir=.
@@ -3321,7 +3320,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
    # If both `conftest.exe' and `conftest' are `present' (well, observable)
  # catch `conftest.exe'.  For instance with Cygwin, `ls conftest' will
  # work properly (i.e., refer to `conftest.exe'), while it won't with
-@@ -1837,38 +2769,31 @@ if { (eval echo "$as_me:$LINENO: \"$ac_l
+@@ -1837,38 +2769,31 @@
  for ac_file in conftest.exe conftest conftest.*; do
    test -f "$ac_file" || continue
    case $ac_file in
@@ -3372,7 +3371,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  /* end confdefs.h.  */
  
  int
-@@ -1880,45 +2805,46 @@ main ()
+@@ -1880,45 +2805,46 @@
  }
  _ACEOF
  rm -f conftest.o conftest.obj
@@ -3444,7 +3443,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  /* end confdefs.h.  */
  
  int
-@@ -1932,55 +2858,34 @@ main ()
+@@ -1932,55 +2858,34 @@
    return 0;
  }
  _ACEOF
@@ -3520,7 +3519,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  /* end confdefs.h.  */
  
  int
-@@ -1991,39 +2896,49 @@ main ()
+@@ -1991,39 +2896,49 @@
    return 0;
  }
  _ACEOF
@@ -3598,7 +3597,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  if test "$ac_test_CFLAGS" = set; then
    CFLAGS=$ac_save_CFLAGS
  elif test $ac_cv_prog_cc_g = yes; then
-@@ -2039,18 +2954,14 @@ else
+@@ -2039,18 +2954,14 @@
      CFLAGS=
    fi
  fi
@@ -3623,7 +3622,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  /* end confdefs.h.  */
  #include <stdarg.h>
  #include <stdio.h>
-@@ -2078,12 +2989,17 @@ static char *f (char * (*g) (char **, in
+@@ -2078,12 +2989,17 @@
  /* OSF 4.0 Compaq cc is some sort of almost-ANSI by default.  It has
     function prototypes and stuff, but not '\xHH' hex character constants.
     These don't provoke an error unfortunately, instead are silently treated
@@ -3643,7 +3642,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  int test (int i, double x);
  struct s1 {int (*f) (int a);};
  struct s2 {int (*f) (double a);};
-@@ -2098,205 +3014,37 @@ return f (e, argv, 0) != argv[0]  ||  f 
+@@ -2098,205 +3014,37 @@
    return 0;
  }
  _ACEOF
@@ -3868,7 +3867,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  ac_ext=c
  ac_cpp='$CPP $CPPFLAGS'
  ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
-@@ -2307,10 +3055,10 @@ fi
+@@ -2307,10 +3055,10 @@
  if test -n "$ac_tool_prefix"; then
    # Extract the first word of "${ac_tool_prefix}ranlib", so it can be a program name with args.
  set dummy ${ac_tool_prefix}ranlib; ac_word=$2
@@ -3883,7 +3882,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  else
    if test -n "$RANLIB"; then
    ac_cv_prog_RANLIB="$RANLIB" # Let the user override the test.
-@@ -2320,35 +3068,37 @@ for as_dir in $PATH
+@@ -2320,35 +3068,37 @@
  do
    IFS=$as_save_IFS
    test -z "$as_dir" && as_dir=.
@@ -3933,7 +3932,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  else
    if test -n "$ac_ct_RANLIB"; then
    ac_cv_prog_ac_ct_RANLIB="$ac_ct_RANLIB" # Let the user override the test.
-@@ -2358,38 +3108,48 @@ for as_dir in $PATH
+@@ -2358,38 +3108,48 @@
  do
    IFS=$as_save_IFS
    test -z "$as_dir" && as_dir=.
@@ -3996,7 +3995,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  else
    if test -n "$AR"; then
    ac_cv_prog_AR="$AR" # Let the user override the test.
-@@ -2399,32 +3159,34 @@ for as_dir in $PATH
+@@ -2399,32 +3159,34 @@
  do
    IFS=$as_save_IFS
    test -z "$as_dir" && as_dir=.
@@ -4043,7 +4042,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  else
    if test -n "$INSTALL"; then
    ac_cv_prog_INSTALL="$INSTALL" # Let the user override the test.
-@@ -2434,27 +3196,29 @@ for as_dir in $PATH
+@@ -2434,27 +3196,29 @@
  do
    IFS=$as_save_IFS
    test -z "$as_dir" && as_dir=.
@@ -4081,7 +4080,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  if test -z "$GCC"; then
  	DEBUG="-g"
  	OPT="-O"
-@@ -2475,15 +3239,15 @@ ac_cpp='$CPP $CPPFLAGS'
+@@ -2475,15 +3239,15 @@
  ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
  ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
  ac_compiler_gnu=$ac_cv_c_compiler_gnu
@@ -4101,7 +4100,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  else
        # Double quotes because CPP needs to be expanded
      for CPP in "$CC -E" "$CC -E -traditional-cpp" "/lib/cpp"
-@@ -2497,11 +3261,7 @@ do
+@@ -2497,11 +3261,7 @@
    # <limits.h> exists even on freestanding compilers.
    # On the NeXT, cc -E runs the code through the compiler's parser,
    # not just through cpp. "Syntax error" is here to catch this case.
@@ -4114,7 +4113,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  /* end confdefs.h.  */
  #ifdef __STDC__
  # include <limits.h>
-@@ -2510,68 +3270,24 @@ cat >>conftest.$ac_ext <<_ACEOF
+@@ -2510,68 +3270,24 @@
  #endif
  		     Syntax error
  _ACEOF
@@ -4188,7 +4187,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
    # Passes both tests.
  ac_preproc_ok=:
  break
-@@ -2581,7 +3297,7 @@ rm -f conftest.err conftest.$ac_ext
+@@ -2581,7 +3297,7 @@
  done
  # Because of `break', _AC_PREPROC_IFELSE's cleaning code was skipped.
  rm -f conftest.err conftest.$ac_ext
@@ -4197,7 +4196,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
    break
  fi
  
-@@ -2593,8 +3309,8 @@ fi
+@@ -2593,8 +3309,8 @@
  else
    ac_cv_prog_CPP=$CPP
  fi
@@ -4208,7 +4207,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  ac_preproc_ok=false
  for ac_c_preproc_warn_flag in '' yes
  do
-@@ -2604,11 +3320,7 @@ do
+@@ -2604,11 +3320,7 @@
    # <limits.h> exists even on freestanding compilers.
    # On the NeXT, cc -E runs the code through the compiler's parser,
    # not just through cpp. "Syntax error" is here to catch this case.
@@ -4221,7 +4220,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  /* end confdefs.h.  */
  #ifdef __STDC__
  # include <limits.h>
-@@ -2617,68 +3329,24 @@ cat >>conftest.$ac_ext <<_ACEOF
+@@ -2617,68 +3329,24 @@
  #endif
  		     Syntax error
  _ACEOF
@@ -4295,7 +4294,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
    # Passes both tests.
  ac_preproc_ok=:
  break
-@@ -2688,14 +3356,13 @@ rm -f conftest.err conftest.$ac_ext
+@@ -2688,14 +3356,13 @@
  done
  # Because of `break', _AC_PREPROC_IFELSE's cleaning code was skipped.
  rm -f conftest.err conftest.$ac_ext
@@ -4316,7 +4315,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  fi
  
  ac_ext=c
-@@ -2705,32 +3372,143 @@ ac_link='$CC -o conftest$ac_exeext $CFLA
+@@ -2705,32 +3372,143 @@
  ac_compiler_gnu=$ac_cv_c_compiler_gnu
  
  
@@ -4481,7 +4480,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  #include <stdlib.h>
  #include <stdarg.h>
  #include <string.h>
-@@ -2744,51 +3522,23 @@ main ()
+@@ -2744,51 +3522,23 @@
    return 0;
  }
  _ACEOF
@@ -4539,7 +4538,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  else
    ac_cv_header_stdc=no
  fi
-@@ -2798,18 +3548,14 @@ fi
+@@ -2798,18 +3548,14 @@
  
  if test $ac_cv_header_stdc = yes; then
    # ISC 2.0.2 stdlib.h does not declare free, contrary to ANSI.
@@ -4561,7 +4560,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  else
    ac_cv_header_stdc=no
  fi
-@@ -2819,16 +3565,13 @@ fi
+@@ -2819,16 +3565,13 @@
  
  if test $ac_cv_header_stdc = yes; then
    # /bin/cc in Irix-4.0.5 gets non-ANSI ctype macros unless using -ansi.
@@ -4581,7 +4580,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  #if ((' ' & 0x0FF) == 0x020)
  # define ISLOWER(c) ('a' <= (c) && (c) <= 'z')
  # define TOUPPER(c) (ISLOWER(c) ? 'A' + ((c) - 'a') : (c))
-@@ -2848,110 +3591,41 @@ main ()
+@@ -2848,110 +3591,41 @@
    for (i = 0; i < 256; i++)
      if (XOR (islower (i), ISLOWER (i))
  	|| toupper (i) != TOUPPER (i))
@@ -4710,7 +4709,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  _ACEOF
  
  fi
-@@ -2959,1657 +3633,137 @@ fi
+@@ -2959,1657 +3633,137 @@
  done
  
  
@@ -6475,7 +6474,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  cat >>confdefs.h <<_ACEOF
  #define SIZEOF_LONG_LONG $ac_cv_sizeof_long_long
  _ACEOF
-@@ -4627,478 +3781,98 @@ case 4 in
+@@ -4627,478 +3781,98 @@
  	$ac_cv_sizeof_long) SIZE32="long";;
  esac
  
@@ -7001,7 +7000,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  /* end confdefs.h.  */
  
  int
-@@ -5108,10 +3882,10 @@ main ()
+@@ -5108,10 +3882,10 @@
  #ifndef __cplusplus
    /* Ultrix mips cc rejects this.  */
    typedef int charset[2];
@@ -7015,7 +7014,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
    /* NEC SVR4.0.2 mips cc rejects this.  */
    struct point {int x, y;};
    static struct point const zero = {0,0};
-@@ -5120,16 +3894,17 @@ main ()
+@@ -5120,16 +3894,17 @@
       an arm of an if-expression whose if-part is not a constant
       expression */
    const char *g = "string";
@@ -7037,7 +7036,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
    }
    { /* Someone thinks the Sun supposedly-ANSI compiler will reject this.  */
      int x[] = {25, 17};
-@@ -5148,51 +3923,27 @@ main ()
+@@ -5148,51 +3923,27 @@
    }
    { /* ULTRIX-32 V3.1 (Rev 9) vcc rejects this */
      const int foo = 10;
@@ -7097,7 +7096,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  
  fi
  
-@@ -5204,7 +3955,9 @@ fi
+@@ -5204,7 +3955,9 @@
  
  
  
@@ -7108,7 +7107,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  cat >confcache <<\_ACEOF
  # This file is a shell script that caches the results of configure
  # tests run on this system so they can be shared between configure
-@@ -5223,39 +3976,59 @@ _ACEOF
+@@ -5223,39 +3976,59 @@
  
  # The following way of writing the cache mishandles newlines in values,
  # but we know of no workaround that is simple, portable, and efficient.
@@ -7186,7 +7185,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
    fi
  fi
  rm -f confcache
-@@ -5264,63 +4037,54 @@ test "x$prefix" = xNONE && prefix=$ac_de
+@@ -5264,63 +4037,54 @@
  # Let make expand exec_prefix.
  test "x$exec_prefix" = xNONE && exec_prefix='${prefix}'
  
@@ -7283,7 +7282,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  done
  LIBOBJS=$ac_libobjs
  
-@@ -5329,11 +4093,13 @@ LTLIBOBJS=$ac_ltlibobjs
+@@ -5329,11 +4093,13 @@
  
  
  : ${CONFIG_STATUS=./config.status}
@@ -7300,7 +7299,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  #! $SHELL
  # Generated by $as_me.
  # Run this file to recreate the current configuration.
-@@ -5343,81 +4109,252 @@ cat >$CONFIG_STATUS <<_ACEOF
+@@ -5343,81 +4109,252 @@
  debug=false
  ac_cs_recheck=false
  ac_cs_silent=false
@@ -7597,7 +7596,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  # Avoid depending upon Character Ranges.
  as_cr_letters='abcdefghijklmnopqrstuvwxyz'
  as_cr_LETTERS='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-@@ -5425,148 +4362,123 @@ as_cr_Letters=$as_cr_letters$as_cr_LETTE
+@@ -5425,148 +4362,123 @@
  as_cr_digits='0123456789'
  as_cr_alnum=$as_cr_Letters$as_cr_digits
  
@@ -7847,7 +7846,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  
  # Sed expression to map a string onto a valid CPP name.
  as_tr_cpp="eval sed 'y%*$as_cr_letters%P$as_cr_LETTERS%;s%[^_$as_cr_alnum]%_%g'"
-@@ -5575,31 +4487,20 @@ as_tr_cpp="eval sed 'y%*$as_cr_letters%P
+@@ -5575,31 +4487,20 @@
  as_tr_sh="eval sed 'y%*+%pp%;s%[^_$as_cr_alnum]%_%g'"
  
  
@@ -7889,7 +7888,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  
    CONFIG_FILES    = $CONFIG_FILES
    CONFIG_HEADERS  = $CONFIG_HEADERS
-@@ -5607,124 +4508,106 @@ generated by GNU Autoconf 2.59.  Invocat
+@@ -5607,124 +4508,106 @@
    CONFIG_COMMANDS = $CONFIG_COMMANDS
    $ $0 $@
  
@@ -8062,7 +8061,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  
    esac
    shift
-@@ -5738,32 +4621,46 @@ if $ac_cs_silent; then
+@@ -5738,32 +4621,46 @@
  fi
  
  _ACEOF
@@ -8123,7 +8122,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  # If the user did not use the arguments to specify the items to instantiate,
  # then the envvar interface is used.  Set only those that are not.
  # We use the long form for the default assignment because of an extremely
-@@ -5773,344 +4670,403 @@ if $ac_need_defaults; then
+@@ -5773,344 +4670,403 @@
  fi
  
  # Have a temporary directory for convenience.  Make it in the build tree
@@ -8819,7 +8818,7 @@ diff -Naurp cdparanoia.orig/configure cdparanoia/configure
  
  # configure is writing to config.log, and then calls config.status.
  # config.status does its own redirection, appending to config.log.
-@@ -6130,6 +5086,10 @@ if test "$no_create" != yes; then
+@@ -6130,6 +5086,10 @@
    exec 5>>config.log
    # Use ||, not &&, to avoid exiting from the if with $? = 1, which
    # would make configure fail if this is the last instruction.

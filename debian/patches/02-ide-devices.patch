@@ -1,10 +1,9 @@
 Author: Steven Ihde <sihde@cs.stanford.edu>
 Description: Adds support for higher ide devices.
 
-diff -Naurp cdparanoia.orig/interface/scan_devices.c cdparanoia/interface/scan_devices.c
---- cdparanoia.orig/interface/scan_devices.c	2008-06-10 23:32:30.000000000 +0200
-+++ cdparanoia/interface/scan_devices.c	2008-06-11 07:20:21.000000000 +0200
-@@ -178,6 +178,12 @@ cdrom_drive *cdda_identify_cooked(const 
+--- a/interface/scan_devices.c
++++ b/interface/scan_devices.c
+@@ -179,6 +179,12 @@
    case IDE1_MAJOR:
    case IDE2_MAJOR:
    case IDE3_MAJOR:

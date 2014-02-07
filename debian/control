@@ -6,15 +6,15 @@ Uploaders: TANIGUCHI Takaki <takaki@debian.org>,
 	Rogério Brito <rbrito@ime.usp.br>
 DM-Upload-Allowed: yes
 Build-Depends:
- debhelper (>= 7), autotools-dev, libcam-dev [kfreebsd-amd64 kfreebsd-i386],
- quilt
+ debhelper (>= 7),
+ autotools-dev,
+ libcam-dev [kfreebsd-amd64 kfreebsd-i386]
 Standards-Version: 3.8.3
 Vcs-Browser: http://git.debian.org/?p=pkg-opt-media/cdparanoia.git 
 Vcs-Git: git://git.debian.org/pkg-opt-media/cdparanoia.git
 Homepage: http://www.xiph.org/paranoia/
 
 Package: cdparanoia
-Section: sound
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Description: audio extraction tool for sampling CDs
@@ -44,6 +44,9 @@ Description: audio extraction tool for sampling CDs (library)
  An audio extraction tool for sampling CDs. Unlike similar programs such as
  cdda2wav, cdparanoia goes to great lengths to try to extract the audio
  information without any artifacts such as jitter.
+ .
+ This package contains the library of cdparanoia, so that its routines
+ can be used by other programs.
 
 Package: libcdparanoia-dev
 Section: libdevel
@@ -55,4 +58,5 @@ Description: audio extraction tool for sampling CDs (development)
  cdda2wav, cdparanoia goes to great lengths to try to extract the audio
  information without any artifacts such as jitter.
  .
- This package contains the development files.
+ This package contains the development files that make a companion to
+ the library.
