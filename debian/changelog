@@ -1,3 +1,14 @@
+cdparanoia (3.10.2+debian-11) unstable; urgency=low
+
+  [ TANIGUCHI Takaki ]
+  * debian/copyright: copyright-format 1.0
+  * debian/control: use kfreebsd-any instead of particular architectures
+    (Closes: #634764)
+  * Apply multiarch patch (Closes: #650988)
+  * Bump Standards-Version to 3.9.3. 
+
+ -- TANIGUCHI Takaki <takaki@debian.org>  Sat, 14 Jul 2012 15:40:47 +0900
+
 cdparanoia (3.10.2+debian-10.1) unstable; urgency=medium
 
   * Non-maintainer upload with maintainer's consent.
